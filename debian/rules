@@ -1,0 +1,15 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+%:
+	dh $@ --builddirectory=build
+	
+override_dh_auto_configure:
+	dh_auto_configure -- -DHTML=ON -DES=ON -DFR=ON -DDE=ON -DHU=ON
+
+override_dh_auto_build:
+	dh_auto_build
+	bash scripts/clean-images.sh
